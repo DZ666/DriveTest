@@ -6,13 +6,12 @@
     "start": "node public/index.js",
     "dev": "nodemon src/index.js",
     "build": "rimraf public && babel src --out-dir public --copy-files",
-    "build:dev": "babel src --out-dir public --copy-files --watch",
     "prisma:generate": "prisma generate",
     "test": "jest --detectOpenHandles",
     "test:watch": "jest --watch --detectOpenHandles",
     "clean": "rimraf public",
     "postinstall": "npm run prisma:generate",
-    "prepare": "npm run build"
+    "vercel-build": "npm run prisma:generate && npm run build"
   },
   "repository": {
     "type": "git",
@@ -42,5 +41,8 @@
     "nodemon": "^3.1.10",
     "rimraf": "^6.0.1",
     "supertest": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=16.x"
   }
 }
