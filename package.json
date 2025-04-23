@@ -1,16 +1,16 @@
 {
   "name": "rulyou-user-service",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "public/index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node public/index.js",
     "dev": "nodemon src/index.js",
-    "build": "rimraf dist && babel src --out-dir dist --copy-files",
-    "build:dev": "babel src --out-dir dist --copy-files --watch",
+    "build": "rimraf public && babel src --out-dir public --copy-files",
+    "build:dev": "babel src --out-dir public --copy-files --watch",
     "prisma:generate": "prisma generate",
     "test": "jest --detectOpenHandles",
     "test:watch": "jest --watch --detectOpenHandles",
-    "clean": "rimraf dist",
+    "clean": "rimraf public",
     "postinstall": "npm run prisma:generate",
     "prepare": "npm run build"
   },
