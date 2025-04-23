@@ -11,7 +11,8 @@
     "test:watch": "jest --watch --detectOpenHandles",
     "clean": "rimraf public",
     "postinstall": "npm run prisma:generate",
-    "vercel-build": "npm run prisma:generate && npm run build"
+    "check-public": "node scripts/vercel-output-check.js",
+    "vercel-build": "npm run prisma:generate && babel src --out-dir public --copy-files && npm run check-public && cp package.json public/"
   },
   "repository": {
     "type": "git",
