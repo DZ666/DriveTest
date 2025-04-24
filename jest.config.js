@@ -18,5 +18,8 @@ module.exports = {
     }
   },
   moduleFileExtensions: ['js', 'json'],
-  setupFilesAfterEnv: ['<rootDir>/src/__tests__/setup.js'],
+  setupFilesAfterEnv: [
+    '<rootDir>/src/__tests__/setup.js',
+    '<rootDir>/scripts/jest-setup.js'
+  ],
 }; 

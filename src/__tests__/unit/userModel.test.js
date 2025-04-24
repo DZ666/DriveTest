@@ -2,6 +2,17 @@ const { PrismaClient } = require('@prisma/client');
 const UserModel = require('../../models/User');
 const { mockUser, mockUsers, newUserData } = require('../mocks/userMocks');
 
+// Отключаем вывод console.error для тестов
+const originalConsoleError = console.error;
+
+beforeAll(() => {
+  console.error = jest.fn();
+});
+
+afterAll(() => {
+  console.error = originalConsoleError;
+});
+
 // Получаем mock-экземпляр Prisma
 const prisma = new PrismaClient();
 const mockPrismaUser = prisma.user;
