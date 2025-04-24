@@ -11,32 +11,32 @@ class CreateUserDTO {
   validate() {
     if (!this.full_name || !this.role || this.efficiency === undefined) {
       throw createError(
-        ERROR_MESSAGES.MISSING_REQUIRED_FIELDS,
         'MISSING_REQUIRED_FIELDS',
+        ERROR_MESSAGES.MISSING_REQUIRED_FIELDS.message,
         400
       );
     }
 
     if (typeof this.full_name !== 'string') {
       throw createError(
-        ERROR_MESSAGES.INVALID_FULL_NAME_TYPE,
         'INVALID_FULL_NAME_TYPE',
+        ERROR_MESSAGES.INVALID_FULL_NAME_TYPE.message,
         400
       );
     }
 
     if (typeof this.role !== 'string') {
       throw createError(
-        ERROR_MESSAGES.INVALID_ROLE_TYPE,
         'INVALID_ROLE_TYPE',
+        ERROR_MESSAGES.INVALID_ROLE_TYPE.message,
         400
       );
     }
 
     if (typeof this.efficiency !== 'number') {
       throw createError(
-        ERROR_MESSAGES.INVALID_EFFICIENCY_TYPE,
         'INVALID_EFFICIENCY_TYPE',
+        ERROR_MESSAGES.INVALID_EFFICIENCY_TYPE.message,
         400
       );
     }
@@ -71,28 +71,51 @@ class UpdateUserDTO {
   validate() {
     if (this.full_name !== undefined && typeof this.full_name !== 'string') {
       throw createError(
-        ERROR_MESSAGES.INVALID_FULL_NAME_TYPE,
         'INVALID_FULL_NAME_TYPE',
+        ERROR_MESSAGES.INVALID_FULL_NAME_TYPE.message,
         400
       );
     }
 
     if (this.role !== undefined && typeof this.role !== 'string') {
       throw createError(
-        ERROR_MESSAGES.INVALID_ROLE_TYPE,
         'INVALID_ROLE_TYPE',
+        ERROR_MESSAGES.INVALID_ROLE_TYPE.message,
         400
       );
     }
 
     if (this.efficiency !== undefined && typeof this.efficiency !== 'number') {
       throw createError(
-        ERROR_MESSAGES.INVALID_EFFICIENCY_TYPE,
         'INVALID_EFFICIENCY_TYPE',
+        ERROR_MESSAGES.INVALID_EFFICIENCY_TYPE.message,
         400
       );
     }
 
+    if (this.full_name !== undefined && this.full_name === "") {
+      throw createError(
+        'MISSING_REQUIRED_FIELDS',
+        ERROR_MESSAGES.MISSING_FULLNAME_FIELD.message,
+        400
+      );
+    }
+
+    if (this.role !== undefined && this.role === "") {
+      throw createError(
+        'MISSING_ROLE_FIELD',
+        ERROR_MESSAGES.MISSING_ROLE_FIELD.message,
+        400
+      );
+    }
+
+    if (this.efficiency !== undefined && this.efficiency === "") {
+      throw createError(
+        'MISSING_EFFICIENCY_FIELD',
+        ERROR_MESSAGES.MISSING_EFFICIENCY_FIELD.message,
+        400
+      );
+    }
     return this;
   }
 
@@ -125,8 +148,8 @@ class GetUserParamsDTO {
   validate() {
     if (this.id !== undefined && isNaN(this.id)) {
       throw createError(
-        'ID пользователя должно быть числом',
         'INVALID_ID_FORMAT',
+        'ID пользователя должно быть числом',
         400
       );
     }

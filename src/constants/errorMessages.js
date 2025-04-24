@@ -15,9 +15,19 @@ const ERROR_MESSAGES = {
     message: 'Все поля обязательны (full_name, role, efficiency)',
     statusCode: 400
   },
-  INVALID_DATA_TYPES: {
-    code: 'INVALID_DATA_TYPES',
-    message: 'Неверные типы данных: full_name и role должны быть строками, efficiency - числом',
+  MISSING_FULLNAME_FIELD: {
+    code: 'MISSING_FULLNAME_FIELD',
+    message: 'Поле full_name обязательно',
+    statusCode: 400
+  },
+  MISSING_ROLE_FIELD: {
+    code: 'MISSING_ROLE_FIELD',
+    message: 'Поле role обязательно',
+    statusCode: 400
+  },
+  MISSING_EFFICIENCY_FIELD: {
+    code: 'MISSING_EFFICIENCY_FIELD',
+    message: 'Поле efficiency обязательно',
     statusCode: 400
   },
   INVALID_FULL_NAME_TYPE: {

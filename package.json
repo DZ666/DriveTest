@@ -4,7 +4,7 @@
   "main": "public/index.js",
   "scripts": {
     "start": "node public/index.js",
-    "dev": "nodemon src/index.js",
+    "dev": "node scripts/start-dev.js",
     "build": "rimraf public && babel src --out-dir public --copy-files",
     "prisma:generate": "prisma generate",
     "test": "jest --detectOpenHandles",
@@ -39,6 +39,7 @@
     "@babel/node": "^7.26.0",
     "@babel/preset-env": "^7.26.9",
     "jest": "^29.7.0",
+    "kill-port": "^2.0.1",
     "nodemon": "^3.1.10",
     "rimraf": "^6.0.1",
     "supertest": "^7.1.0"

@@ -23,6 +23,11 @@ app.use('*', (req, res) => {
 
 app.use((err, _req, res, _next) => {
   console.error(err.stack);
+  
+  if (err.errorCode && err.statusCode) {
+    return sendError(err, res);
+  } 
+  
   const error = createError('INTERNAL_SERVER_ERROR', 'Внутренняя ошибка сервера', 500);
   sendError(error, res);
 });
@@ -36,9 +41,28 @@ async function startServer() {
       process.exit(1);
     }
     
-    app.listen(PORT, () => {
+    const server = app.listen(PORT);
+    
+    server.on('error', (error) => {
+      if (error.code === 'EADDRINUSE') {
+        console.error(`Порт ${PORT} уже используется. Пытаемся освободить...`);
+        
+        try {
+          process.exit(0);
+        } catch (e) {
+          console.error('Не удалось освободить порт:', e);
+          process.exit(1);
+        }
+      } else {
+        console.error('Ошибка при запуске сервера:', error);
+        process.exit(1);
+      }
+    });
+    
+    server.on('listening', () => {
       console.log(`Сервер запущен на порту ${PORT}`);
     });
+    
   } catch (error) {
     console.error('Ошибка при запуске сервера:', error);
     process.exit(1);
